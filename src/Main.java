@@ -22,8 +22,31 @@ class Address{
 }
 
 public class Main {
+	public static void addAddress(ArrayList<Address> addressBook) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter Firstname: ");
+		String firstName = scanner.nextLine();
+		System.out.println("Enter Lastname: ");
+		String lastName = scanner.nextLine();
+		System.out.println("Enter Address: ");
+		String address = scanner.nextLine();
+		System.out.println("Enter City: ");
+		String city = scanner.nextLine();
+		System.out.println("Enter State: ");
+		String state = scanner.nextLine();
+		System.out.println("Enter Zip: ");
+		String zip = scanner.nextLine();
+		System.out.println("Enter Phonenumber: ");
+		String phoneNumber = scanner.nextLine();
+		System.out.println("Enter Email: ");
+		String email = scanner.nextLine();
+		addressBook.add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
+		System.out.println("Address Added");
+	}
 	public static void main(String args[]) {
 		ArrayList<Address> addressBook = new ArrayList<Address>();
 		System.out.println("Welcome to Address Book");
+		addAddress(addressBook);
 	}
+
 }
