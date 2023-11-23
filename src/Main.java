@@ -148,11 +148,35 @@ public class Main {
 			System.out.println("Address Not Found");
 		}
 	}
+	public static void deleteAddress(ArrayList<Address> addressBook) {
+		System.out.println("--------------DELETE--------------");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter Firstname: ");
+		String firstName = scanner.nextLine();
+		System.out.println("Enter Lastname: ");
+		String lastName = scanner.nextLine();
+		System.out.println("Searching Address Book");
+		int flag = 0;
+		for(int i = 0; i < addressBook.size(); i++) {
+			if(addressBook.get(i).getFirstName().equals(firstName) && addressBook.get(i).getLastName().equals(lastName)) {
+				flag = 1;
+				addressBook.remove(i);
+				break;
+			}
+		}
+		if(flag == 1) {
+			System.out.println("Deleted Address");
+		}
+		else {
+			System.out.println("Address Not Found");
+		}
+	}
 	public static void main(String args[]) {
 		ArrayList<Address> addressBook = new ArrayList<Address>();
 		System.out.println("Welcome to Address Book");
 		addAddress(addressBook);
 		editAddress(addressBook);
+		deleteAddress(addressBook);
 		
 	}
 
