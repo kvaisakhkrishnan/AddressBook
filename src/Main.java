@@ -174,9 +174,27 @@ public class Main {
 	public static void main(String args[]) {
 		ArrayList<Address> addressBook = new ArrayList<Address>();
 		System.out.println("Welcome to Address Book");
-		addAddress(addressBook);
-		editAddress(addressBook);
-		deleteAddress(addressBook);
+		while(true) {
+			System.out.println("1. Add address\n2. Update Address\n3. Delete Address\4.Exit");
+			int count;
+			Scanner scanner = new Scanner(System.in);
+			count = scanner.nextInt();
+			
+			if(count == 1) {
+				addAddress(addressBook);
+				
+			}
+			else if(count == 2) {
+				editAddress(addressBook);
+				
+			}
+			else if(count == 3) {
+				deleteAddress(addressBook);
+			}
+			else {
+				break;
+			}
+		}
 		
 	}
 
