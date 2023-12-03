@@ -17,7 +17,7 @@ public class AddressBook {
 	
 	public void displayAddress() {
 		for(Address address : addressList) {
-			System.out.println(address.getFirstName());
+			System.out.println(address.toString());
 		}
 	}
 
