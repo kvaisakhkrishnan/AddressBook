@@ -15,7 +15,8 @@ public class AddressBook {
 		this.addressList = addressList;
 	}
 
-	public void addAddress() {
+	public void addAddress(Dictionary<String, ArrayList<Address>> hashByCity, Dictionary<String, ArrayList<Address>> hashByState) {
+		
 		System.out.println("--------------ADD--------------");
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter Firstname: ");
@@ -35,7 +36,20 @@ public class AddressBook {
 		System.out.println("Enter Email: ");
 		String email = scanner.nextLine();
 		addressList.add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
-		System.out.println("Address Added");
+		if(hashByCity.get(city) != null) {
+			hashByCity.get(city).add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
+		}
+		else {
+			hashByCity.put(city, new ArrayList<Address>());
+			hashByCity.get(city).add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
+		}
+		if(hashByState.get(state) != null) {
+			hashByState.get(state).add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
+		}
+		else {
+			hashByState.put(state, new ArrayList<Address>());
+			hashByState.get(state).add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
+		}
 	}
 	
 	public void editAddress() {

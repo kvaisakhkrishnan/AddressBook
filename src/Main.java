@@ -5,10 +5,14 @@ public class Main {
 	
 	public static void main(String args[]) {
 		Dictionary<String, AddressBook> library = new Hashtable<>();
+		Dictionary<String, ArrayList<Address>> searchByCity = new Hashtable<>();
+		Dictionary<String, ArrayList<Address>> searchByState = new Hashtable<>();
+
+
 		AddressBook addressBook = new AddressBook();
 		System.out.println("Welcome to Address Book");
 		while(true) {
-			System.out.println("1. Add Address Book\n2. Add address\n3. Update Address\n4. Delete Address\n5. Exit");
+			System.out.println("1. Add Address Book\n2. Add address\n3. Update Address\n4. Delete Address\n5. Search\n 6. Search By City And State\n6. Exit");
 			int count;
 			Scanner scanner = new Scanner(System.in);
 			count = scanner.nextInt();
@@ -22,7 +26,7 @@ public class Main {
 				System.out.println("Enter Address Book Name: ");
 				String addressBookName = scanner.next();
 				if(library.get(addressBookName) != null) {
-					library.get(addressBookName).addAddress();
+					library.get(addressBookName).addAddress(searchByCity, searchByState);
 				}
 				else {
 					System.out.println("Address Book Now Found");
@@ -48,6 +52,60 @@ public class Main {
 				}
 				else {
 					System.out.println("Address Book Now Found");
+				}
+			}
+			else if(count == 5) {
+				int flag = 0;
+				System.out.println("Enter First Name and Last Name: ");
+				String firstName = scanner.next();
+				String lastName = scanner.next();
+				Enumeration<String> keys = library.keys();
+				while(keys.hasMoreElements()) {
+					String key = keys.nextElement();
+					for(int i = 0; i < library.get(key).getAddressList().size(); i++) {
+						if(library.get(key).getAddressList().get(i).getFirstName().equals(firstName) &&
+								library.get(key).getAddressList().get(i).getLastName().equals(lastName)
+								) {
+							System.out.println(library.get(key).getAddressList().get(i).getFirstName());
+							System.out.println(library.get(key).getAddressList().get(i).getLastName());
+							System.out.println(library.get(key).getAddressList().get(i).getPhoneNumber());
+							System.out.println(library.get(key).getAddressList().get(i).getAddress());
+							System.out.println(library.get(key).getAddressList().get(i).getEmail());
+							System.out.println(library.get(key).getAddressList().get(i).getCity());
+							System.out.println(library.get(key).getAddressList().get(i).getState());
+							System.out.println(library.get(key).getAddressList().get(i).getZip());
+							flag = 1;
+							System.out.println("---------------------------");
+						}
+							
+					}
+				}
+				if(flag == 0) {
+					System.out.println("Person Not Found");
+				}
+			}
+			else if(count == 6) {
+				System.out.println("Details By City");
+				Enumeration<String> keys = searchByCity.keys();
+				while(keys.hasMoreElements()) {
+					String key = keys.nextElement();
+					for(Address address : searchByCity.get(key)) {
+						System.out.println(address.getFirstName());
+						System.out.println(address.getLastName());
+						System.out.println(address.getAddress());
+						System.out.println("---------------------------");
+					}
+				}
+				System.out.println("Details By State");
+				keys = searchByState.keys();
+				while(keys.hasMoreElements()) {
+					String key = keys.nextElement();
+					for(Address address : searchByState.get(key)) {
+						System.out.println(address.getFirstName());
+						System.out.println(address.getLastName());
+						System.out.println(address.getAddress());
+						System.out.println("---------------------------");
+					}
 				}
 			}
 			else {
