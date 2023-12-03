@@ -12,7 +12,7 @@ public class Main {
 		AddressBook addressBook = new AddressBook();
 		System.out.println("Welcome to Address Book");
 		while(true) {
-			System.out.println("1. Add Address Book\n2. Add address\n3. Update Address\n4. Delete Address\n5. Search\n 6. Search By City And State\n6. Exit");
+			System.out.println("1. Add Address Book\n2. Add address\n3. Update Address\n4. Delete Address\n5. Search\n6. Search By City And State\n7. Count By City State\n8. Exit");
 			int count;
 			Scanner scanner = new Scanner(System.in);
 			count = scanner.nextInt();
@@ -107,6 +107,21 @@ public class Main {
 						System.out.println("---------------------------");
 					}
 				}
+			}
+			else if(count == 7) {
+				System.out.println("Count By City");
+				Enumeration<String> keys = searchByCity.keys();
+				while(keys.hasMoreElements()) {
+					String key = keys.nextElement();
+					System.out.println(key + ", Count: " + searchByCity.get(key).size());
+				}
+				System.out.println("Count By State");
+				keys = searchByState.keys();
+				while(keys.hasMoreElements()) {
+					String key = keys.nextElement();
+					System.out.println(key + ", Count: " + searchByState.get(key).size());
+				}
+				
 			}
 			else {
 				break;
