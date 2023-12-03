@@ -12,7 +12,7 @@ public class Main {
 		AddressBook addressBook = new AddressBook();
 		System.out.println("Welcome to Address Book");
 		while(true) {
-			System.out.println("1. Add Address Book\n2. Add address\n3. Update Address\n4. Delete Address\n5. Search\n6. Search By City And State\n7. Count By City State\n8. Exit");
+			System.out.println("1. Add Address Book\n2. Add address\n3. Update Address\n4. Delete Address\n5. Search\n6. Search By City And State\n7. Count By City State\n8. Sort Person in Address Book\n9. Exit");
 			int count;
 			Scanner scanner = new Scanner(System.in);
 			count = scanner.nextInt();
@@ -122,6 +122,27 @@ public class Main {
 					System.out.println(key + ", Count: " + searchByState.get(key).size());
 				}
 				
+			}
+			else if(count == 8) {
+				System.out.println("Enter Address Book Name: ");
+				String addressBookName = scanner.next();
+				if(library.get(addressBookName) != null) {
+					Comparator<Address> comp = new Comparator<>(){
+
+						@Override
+						public int compare(Address o1, Address o2) {
+							// TODO Auto-generated method stub
+							return o1.getFirstName().compareTo(o2.getFirstName());
+						}
+						
+					};
+					Collections.sort(library.get(addressBookName).getAddressList(), comp);
+					library.get(addressBookName).displayAddress();
+					
+				}
+				else {
+					System.out.println("Address Book Now Found");
+				}
 			}
 			else {
 				break;

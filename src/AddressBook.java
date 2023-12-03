@@ -14,6 +14,12 @@ public class AddressBook {
 	public void setAddressList(ArrayList<Address> addressList) {
 		this.addressList = addressList;
 	}
+	
+	public void displayAddress() {
+		for(Address address : addressList) {
+			System.out.println(address.getFirstName());
+		}
+	}
 
 	public void addAddress(Dictionary<String, ArrayList<Address>> hashByCity, Dictionary<String, ArrayList<Address>> hashByState) {
 		
