@@ -86,40 +86,56 @@ public class Main {
 			}
 			else if(count == 6) {
 				System.out.println("Details By City");
+				System.out.println("Enter City: ");
+				String cityName = scanner.next();
 				Enumeration<String> keys = searchByCity.keys();
 				while(keys.hasMoreElements()) {
 					String key = keys.nextElement();
-					for(Address address : searchByCity.get(key)) {
-						System.out.println(address.getFirstName());
-						System.out.println(address.getLastName());
-						System.out.println(address.getAddress());
-						System.out.println("---------------------------");
+					if(key.equals(cityName)) {
+						for(Address address : searchByCity.get(key)) {
+							System.out.println(address.getFirstName());
+							System.out.println(address.getLastName());
+							System.out.println(address.getAddress());
+							System.out.println("---------------------------");
+						}
 					}
 				}
 				System.out.println("Details By State");
+				System.out.println("Enter State: ");
+				String stateName = scanner.next();
 				keys = searchByState.keys();
 				while(keys.hasMoreElements()) {
 					String key = keys.nextElement();
-					for(Address address : searchByState.get(key)) {
-						System.out.println(address.getFirstName());
-						System.out.println(address.getLastName());
-						System.out.println(address.getAddress());
-						System.out.println("---------------------------");
+					if(key.equals(stateName)) {
+						for(Address address : searchByState.get(key)) {
+							System.out.println(address.getFirstName());
+							System.out.println(address.getLastName());
+							System.out.println(address.getAddress());
+							System.out.println("---------------------------");
+						}
 					}
 				}
 			}
 			else if(count == 7) {
 				System.out.println("Count By City");
+				System.out.println("Enter City: ");
+				String cityName = scanner.next();
 				Enumeration<String> keys = searchByCity.keys();
 				while(keys.hasMoreElements()) {
 					String key = keys.nextElement();
-					System.out.println(key + ", Count: " + searchByCity.get(key).size());
+					if(key.equals(cityName)) {
+						System.out.println(key + ", Count: " + searchByCity.get(key).size());
+					}
 				}
 				System.out.println("Count By State");
+				System.out.println("Enter State: ");
+				String stateName = scanner.next();
 				keys = searchByState.keys();
 				while(keys.hasMoreElements()) {
 					String key = keys.nextElement();
-					System.out.println(key + ", Count: " + searchByState.get(key).size());
+					if(key.equals(stateName)) {
+						System.out.println(key + ", Count: " + searchByState.get(key).size());
+					}
 				}
 				
 			}
