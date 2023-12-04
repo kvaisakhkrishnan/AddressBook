@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
 	
 	public static void main(String args[]) {
-		Dictionary<String, AddressBook> library = new Hashtable<>();
+		Dictionary<String, AddressBook> library.get(addressBookName). = new Hashtable<>();
 		Dictionary<String, ArrayList<Address>> searchByCity = new Hashtable<>();
 		Dictionary<String, ArrayList<Address>> searchByState = new Hashtable<>();
 

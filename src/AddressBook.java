@@ -41,20 +41,26 @@ public class AddressBook {
 		String phoneNumber = scanner.nextLine();
 		System.out.println("Enter Email: ");
 		String email = scanner.nextLine();
-		addressList.add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
-		if(hashByCity.get(city) != null) {
-			hashByCity.get(city).add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
+		boolean result = checkDuplicateAddress(firstName, lastName);
+		if(result == false) {
+			addressList.add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
+			if(hashByCity.get(city) != null) {
+				hashByCity.get(city).add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
+			}
+			else {
+				hashByCity.put(city, new ArrayList<Address>());
+				hashByCity.get(city).add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
+			}
+			if(hashByState.get(state) != null) {
+				hashByState.get(state).add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
+			}
+			else {
+				hashByState.put(state, new ArrayList<Address>());
+				hashByState.get(state).add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
+			}
 		}
 		else {
-			hashByCity.put(city, new ArrayList<Address>());
-			hashByCity.get(city).add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
-		}
-		if(hashByState.get(state) != null) {
-			hashByState.get(state).add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
-		}
-		else {
-			hashByState.put(state, new ArrayList<Address>());
-			hashByState.get(state).add(new Address(firstName, lastName, address, city, state, zip, phoneNumber, email));
+			System.out.println("User Already Exist");
 		}
 	}
 	
@@ -121,5 +127,17 @@ public class AddressBook {
 		else {
 			System.out.println("Address Not Found");
 		}
+	}
+	
+	boolean checkDuplicateAddress(String fname, String lname) {
+		for(Address address : addressList) {
+			if(address.getFirstName().equals(fname) && 
+					address.getLastName().equals(lname)
+					) {
+				return true;
+			}
+			
+		}
+		return false;
 	}
 }
