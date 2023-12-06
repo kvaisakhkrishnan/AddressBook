@@ -1,3 +1,9 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 public class AddressBook {
@@ -139,5 +145,48 @@ public class AddressBook {
 			
 		}
 		return false;
+	}
+	
+	void readFromFile(String filePath) {
+		Path path = Path.of(filePath);
+		if(!Files.exists(path)) {
+			try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+				String line;
+				while((line = reader.readLine()) != null) {
+					String data[] = line.split(",");
+					addressList.add(new Address(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]));
+ 				}
+			}
+			catch(Exception err) {
+				System.out.println("Error " + err.getMessage());
+			}
+		}
+		else {
+			System.out.println("Path Not Found");
+		}
+	}
+	
+	void writeToFile(String filePath) {
+		Path path = Path.of(filePath);
+		if(!Files.exists(path)) {
+			try {
+				Files.createFile(path);
+			}
+			catch(Exception err) {
+				System.out.println("Error " + err.getMessage());
+			}
+		}
+		
+			for(Address address : this.addressList) {
+				try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))){
+					writer.write(address.getFirstName() + ", " + address.getLastName() + ", " + address.getEmail() + ", " + address.getPhoneNumber() + ", " + address.getAddress() + ", " + address.getCity() + ", " + address.getState() + ", " + address.getZip());
+					writer.newLine();
+				}
+				catch(Exception err) {
+					System.out.println("Error " + err.getMessage());
+				}
+			}
+		
+		
 	}
 }

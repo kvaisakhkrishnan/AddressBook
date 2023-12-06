@@ -12,7 +12,7 @@ public class Main {
 		AddressBook addressBook = new AddressBook();
 		System.out.println("Welcome to Address Book");
 		while(true) {
-			System.out.println("1. Add Address Book\n2. Add address\n3. Update Address\n4. Delete Address\n5. Search\n6. Search By City And State\n7. Count By City State\n8. Sort Person in Address Book\n9. Sort By City, State, Zip\n10. Exit");
+			System.out.println("1. Add Address Book\n2. Add address\n3. Update Address\n4. Delete Address\n5. Search\n6. Search By City And State\n7. Count By City State\n8. Sort Person in Address Book\n9. Sort By City, State, Zip\n10. Read From File\n11. Write To File\n12. Exit");
 			int count;
 			Scanner scanner = new Scanner(System.in);
 			count = scanner.nextInt();
@@ -207,6 +207,12 @@ public class Main {
 				else {
 					System.out.println("Address Book Now Found");
 				}
+			}
+			else if(count == 10) {
+				addressBook.readFromFile("address.txt");
+			}
+			else if(count == 11) {
+				addressBook.writeToFile("newAddress.txt");
 			}
 			else {
 				break;
